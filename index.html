@@ -6,7 +6,6 @@
   <title>Donovan Geraghty</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <script src="index.js"></script>
   <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js">
 </script>
@@ -95,27 +94,28 @@
            <h3 class="modal__title modal__sub-title--contact">I'm currently open to new opporotunities.</h3>
            <form id="contact__form" onsubmit="contact(event)">
           <div class="form__item">
-           <label class="form__item--label">Name</label> 
-           <input class="input" name="user_name" type="text"></input>
+            <label class="form__item--label" for="user_name">Name</label>
+            <input class="input" id="user_name" name="user_name" type="text" required>
           </div>
                <div class="form__item">
-           <label class="form__item--label">E-mail</label> 
-           <input class="input" name="user_email" type="email"></input>
+            <label class="form__item--label" for="user_email">E-mail</label>
+            <input class="input" id="user_email" name="user_email" type="email" required>
           </div>
                <div class="form__item">
-           <label class="form__item--label">Message</label> 
-           <textarea class="input" name="user_message" type="text"></textarea>
+            <label class="form__item--label" for="user_message">Message</label>
+            <textarea class="input" id="user_message" name="user_message" required></textarea>
           </div>
-          <button id="contact__submit" class="form__submit">
+           <button id="contact__submit" class="form__submit" type="submit">
             Send it my way
           </button>
            </form>
-           <div class="modal__overlay modal__overlay--loading">
-            <i class="fas fa-spinner"></i>
-           </div>
-           <div class="modal__overlay modal__overlay--success">
-            Thanks for the message. I look forward to speaking with you soon.
-           </div>
+            <p class="form__status" role="alert" aria-live="polite"></p>
+            <div class="modal__overlay modal__overlay--loading" role="status" aria-label="Sending message">
+             <i class="fas fa-spinner"></i>
+            </div>
+            <div class="modal__overlay modal__overlay--success" role="status" aria-live="polite">
+             Thanks for the message. I look forward to speaking with you soon.
+            </div>
         </div>
         <i class="fas fa-times modal__exit click"></i>
     </div>
@@ -190,5 +190,6 @@
     </div>
     </div>
   </footer>
+  <script src="index.js"></script>
 </body>
 </html>
