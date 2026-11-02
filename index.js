@@ -1,3 +1,18 @@
+const scaleFactor = 1 / 20;
+
+function moveBackground(event) {
+  const shapes = document.querySelectorAll(".shape");
+  const x = event.clientX * scaleFactor;
+  const y = event.clientY * scaleFactor;
+
+  for (let i = 0; i < shapes.length; ++i) {
+    const isOdd = i % 2 !== 0;
+    const boolInt = isOdd ? -1 : 1;
+    
+    shapes[i].style.transform = `translate(${x * boolInt}px, ${y * boolInt}px) rotate(${x * boolInt * 10}deg)`
+  }
+}
+
 function toggleContrast() {
   document.body.classList.toggle('dark-theme');
 }
@@ -25,7 +40,7 @@ async function contact(event) {
       throw new Error('EmailJS did not load.');
     }
 
-    await emailjs.sendForm(service_0yh5wdr, template_d6v1pkw, form);
+    await emailjs.sendForm('service_0yh5wdr', 'template_d6v1pkw', form);
     form.reset();
     success.classList.add('modal__overlay--visible');
   } catch (error) {

@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -239,9 +244,11 @@ border-radius: 50%;
   border: none;
   background-color: #242424;
   color: white;
-  position: absolute;
+  position: fixed;
   bottom: 32px;
   right: 40px;
+  z-index: 100;
+  box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.1);
 }
 
 .scroll {
@@ -320,6 +327,13 @@ nav {
   text-align: center;
   font-size: 48px;
   margin-bottom: 60px;
+}
+
+.project__list {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 0 24px;
 }
 
 .project__img {
@@ -428,15 +442,17 @@ footer {
 /* MODAL */
 
 .modal {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 1100px;
-  height: 700px;
+  height: min(700px, calc(100vh - 32px));
+  max-height: calc(100vh - 32px);
   border-radius: 20px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
   visibility: hidden;
   transition: visibility 1s, z-index 1s, box-shadow 0.5s ease;
@@ -625,4 +641,111 @@ animation: spinner 750ms infinite linear;
   background: none;
   border: 0;
   cursor: pointer;
+}
+
+/*
+SHAPES
+first row shapes
+height=35vh
+
+second row shapes
+height=70vh
+
+third row shapes
+height=95vh
+*/
+
+.shape {
+  position: fixed;
+}
+.shape--0 {
+  top: 15vh;
+  left: 5vw;
+}
+.shape--1 {
+  top: 15vh;
+  left: 50vw;
+}
+.shape--2 {
+  top: 15vh;
+  left: 80vw;
+}
+.shape--3 {
+  top: 50vh;
+  left: 5vw;
+}
+.shape--4 {
+  top: 50vh;
+  left: 50vw;
+}
+.shape--5 {
+  top: 50vh;
+  left: 80vw;
+}
+.shape--6 {
+  top: 80vh;
+  left: 5vw;
+}
+.shape--7 {
+  top: 80vh;
+  left: 50vw;
+}
+.shape--8 {
+  top: 80vh;
+  left: 80vw;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 80px;
+  }
+  .header__para {
+    font-size: 20px;
+  }
+  .modal {
+    top: 0;
+    left: 0;
+    transform: none;
+    height: auto;
+    max-height: 100vh;
+    max-height: 100dvh;
+    width: 100%;
+    flex-direction: column-reverse;
+    border-radius: 0;
+  }
+  .modal__half {
+    width: 100%;
+  }
+}
+
+/* phones */
+@media (max-width: 480px) {
+  .title {
+    font-size: 52px;
+  }
+  .header__para {
+    font-size: 18px;
+  }
+  .nav__link:first-child {
+    display: none;
+  }
+  .project__description--para {
+    display: none;
+  }
+  .project__description {
+    left: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+  }
+  .project__description--sub-title {
+    margin-bottom: 8px;
+  }
+  .project__list {
+    gap: 32px;
+    padding: 0 12px;
+  }
+  .modal__half {
+    padding: 40px 24px;
+  }
 }
