@@ -36,7 +36,7 @@
           link__hover-effect
           link__hover-effect--black">Contact</a>
         </li>
-         <li class="nav__link click"><a href="#" class="nav__link--anchor
+         <li class="nav__link click" onClick="toggleContrast()"><a href="#" class="nav__link--anchor
           link__hover-effect
           link__hover-effect--black"><i class="fa-solid fa-circle-half-stroke"></i></a>
         </li>
@@ -46,8 +46,8 @@
 <div class="header__content">
   <h1 class="title">Hey</h1>
   <h1 class="title darkgreen">I'm Donovan.</h1>
-  <p class ="header__para">I'm a <b class="darkgreen">Frontend Software Engineer</b> with a strong passion for experiences.
-    <br>Here's a bit more <b class="darkgreen">about me.</b>
+  <p class ="header__para">I'm a <button type="button" class="modal-trigger darkgreen" onclick="toggleModal()">Frontend Software Engineer Student</button> with a strong passion for experiences.
+    <br>Here's a bit more <button type="button" class="modal-trigger darkgreen" onclick="toggleModal()">about me.</button>
   </p>
   <div class="social__list">
     <a href="https://github.com/donovangeraghty-mikey" class="social__link click"><i target="_blank" class="fab fa-github"></i></a>
@@ -56,7 +56,7 @@
   </div>
 </div>
     </header>
-    <button class="mail__btn click">
+    <button class="mail__btn click" onclick="toggleModal()">
 <i class="fa-solid fa-envelope"></i>
     </button>
     <a href="#projects" class="scroll">
@@ -109,15 +109,19 @@
             Send it my way
           </button>
            </form>
-            <p class="form__status" role="alert" aria-live="polite"></p>
-            <div class="modal__overlay modal__overlay--loading" role="status" aria-label="Sending message">
+            <p class="form__status" role="alert"></p>
+            <div class="modal__overlay modal__overlay--loading" role="status">
+             <span class="visually-hidden">Sending message</span>
              <i class="fas fa-spinner"></i>
             </div>
-            <div class="modal__overlay modal__overlay--success" role="status" aria-live="polite">
+            <div class="modal__overlay modal__overlay--success" role="status">
              Thanks for the message. I look forward to speaking with you soon.
             </div>
         </div>
-        <i class="fas fa-times modal__exit click"></i>
+        <button type="button" class="modal__exit click" onclick="toggleModal()">
+          <i class="fas fa-times" aria-hidden="true"></i>
+          <span class="visually-hidden">Close dialog</span>
+        </button>
     </div>
   </section>
   <section id="projects">

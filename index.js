@@ -1,5 +1,6 @@
-const EMAILJS_SERVICE_ID = 'service_0yh5wdr';
-const EMAILJS_TEMPLATE_ID = 'template_d6v1pkw';
+function toggleContrast() {
+  document.body.classList.toggle('dark-theme');
+}
 
 async function contact(event) {
   event.preventDefault();
@@ -24,14 +25,18 @@ async function contact(event) {
       throw new Error('EmailJS did not load.');
     }
 
-    await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
+    await emailjs.sendForm(service_0yh5wdr, template_d6v1pkw, form);
     form.reset();
     success.classList.add('modal__overlay--visible');
   } catch (error) {
     console.error('Failed to send contact form:', error);
-    status.textContent = 'Sorry, your message could not be sent. Please try again later or email me directly.';
+    status.textContent = 'Your message could not be sent. Please try again later or email me directly at ..@...com .';
   } finally {
     loading.classList.remove('modal__overlay--visible');
     submitButton.disabled = false;
   }
+}
+
+function toggleModal() {
+  document.body.classList.toggle('modal--open');
 }

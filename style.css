@@ -22,6 +22,7 @@ a {
 
 section {
   background-color: rgb(245, 245, 245);
+  transition: all 300ms ease;
 }
 
 input, textarea {
@@ -55,6 +56,7 @@ input:hover, textarea:hover {
 input:focus, textarea:focus {
   border-color: darkgreen;
 }
+
 
 .container {
   padding: 50px 0;
@@ -92,6 +94,24 @@ transform: scale(1.1);
 color: rgb(24, 129, 24)
 }
 
+.modal-trigger {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+}
+
+.modal-trigger:hover {
+  text-decoration: underline;
+}
+
+.modal-trigger:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 .link__hover-effect {
   position: relative;
   display: inline-block;
@@ -118,6 +138,56 @@ color: rgb(24, 129, 24)
 .link__hover-effect:hover::after {
   left: 0;
   width: 100%;
+}
+
+nav,
+.scroll,
+.header {
+  opacity: 1;
+  visibility: visible;
+  transition: all 600ms 200ms;
+}
+
+.modal--open nav,
+.modal--open .scroll,
+.modal--open .header {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 400ms;
+}
+
+.dark-theme section {
+  background-color: #242424;
+  color: #f5f5f5;
+}
+
+.dark-theme .title,
+.dark-theme .section__title,
+.dark-theme .nav__link--anchor,
+.dark-theme .fa-solid.fa-circle-half-stroke,
+.dark-theme .header__para {
+  color: #f5f5f5;
+}
+
+.dark-theme #personal-logo {
+  filter: none;
+}
+
+.dark-theme .scroll__icon {
+  border-color: white;
+}
+
+.dark-theme .mail__btn {
+  background-color: white;
+  color: #242424;
+}
+
+.dark-theme .modal__about {
+  color: #242424;
+}
+
+.dark-theme .link__hover-effect--black::after {
+  background-color: #f5f5f5;
 }
 
 /*LANDING PAGE*/
@@ -365,10 +435,17 @@ footer {
   width: 90%;
   max-width: 1100px;
   height: 700px;
-  box-shadow: 0 20px 80px 0 rgb(0, 0, 0, 0.55);
   border-radius: 20px;
   overflow: hidden;
   display: flex;
+  visibility: hidden;
+  transition: visibility 1s, z-index 1s, box-shadow 0.5s ease;
+}
+
+.modal--open .modal {
+  z-index: 60;
+box-shadow: 0 20px 80px 0 rgb(0, 0, 0, 0.55);
+visibility: visible;
 }
 
 .modal__half {
@@ -378,10 +455,17 @@ footer {
   flex-direction: column;
   justify-content: center;
   position: relative;
+  transition: all 300ms ease-in;
+}
+
+.modal--open .modal__about,
+.modal--open .modal__contact {
+  transform: translateX(0%)
 }
 
 .modal__about {
   background-color: rgb(245, 245, 245);
+  transform: translateX(-110%);
 }
 
 .modal__languages {
@@ -421,6 +505,7 @@ transform: scale(1);
 .modal__contact {
   background-color: #242424;
   color: white;
+  transform: translateX(110%);
 }
 
 .modal__title {
@@ -445,6 +530,18 @@ font-size: 26px;
 .form__status {
   color: #ffb3b3;
   margin-top: 12px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .form__submit {
@@ -480,7 +577,7 @@ font-size: 26px;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   z-index: -1;
@@ -501,7 +598,8 @@ z-index: -1;
 }
 
 .modal__overlay--visible {
-  z-index: 1
+  z-index: 1;
+  display: flex;
 }
 
 .fa-spinner {
@@ -524,4 +622,7 @@ animation: spinner 750ms infinite linear;
   color: white;
   font-size: 36px;
   z-index: 100;
+  background: none;
+  border: 0;
+  cursor: pointer;
 }
